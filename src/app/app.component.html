@@ -1,0 +1,41 @@
+<ion-app>
+  <!-- <ion-split-pane when="false"  contentId="main-content"> -->
+  <ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header>BerkasNovel</ion-list-header>
+        <ion-note>Tempat Baca Novel Terjemahan</ion-note>
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBerkasNovel&amp;tabs&amp;width=500&amp;height=70&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId=366781520125931" height="100px" width="500px" class="mx-auto ion-padding" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+            routerLinkActive="selected">
+            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <form [formGroup]='form' (ngSubmit)="CariNovel()">
+        <ion-item>
+          <ion-icon slot="start" icon="search"></ion-icon>
+          <ion-label position="floating">Cari Novel...</ion-label>
+          <ion-input menuClose="left" required formControlName="kw" type="text"></ion-input>
+        </ion-item>
+        <!-- <ion-button expand="block"color="primary" type="submit"(click)="CariNovel()">
+            Cari
+          </ion-button> -->
+      </form>
+
+      <ion-list id="labels-list">
+        <ion-list-header>About</ion-list-header>
+
+        <ion-item *ngFor="let label of labels" lines="none">
+          <ion-note>{{ label }}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

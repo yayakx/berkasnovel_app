@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-menu-toggle>
+        <ion-button  fill="clear">
+          <ion-icon size="large"  name="menu-outline"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-title class="ion-text-justify">Daftar Fan Translation</ion-title>
+    </ion-row>   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card>
+      <ion-grid fixed>
+        <ion-row wrap>          
+          <ion-col size-lg="6" size-md="12" *ngFor="let fts of fts$|async">
+            <ion-card-content (click)="goHref(fts)">
+              <ion-card-title style="text-align: center;">{{fts.nama_ft}}</ion-card-title>
+              <ion-card-subtitle style="text-align: center">{{fts.url_ft.replace('/feed','').replace('/rss.xml','')}}</ion-card-subtitle>            
+            </ion-card-content>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

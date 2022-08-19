@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-row>
+      <ion-menu-toggle>
+        <ion-button fill="clear">
+          <ion-icon size="large" name="menu-outline"></ion-icon>
+        </ion-button>
+      </ion-menu-toggle>
+      <ion-title class="ion-text-justify">Daftar Update Novel</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <ion-list>
+    <ion-row wrap>
+      <ion-col size-lg="6" size-md="12" size-sm="12" size-xs="12" size="auto" *ngFor="let post of itemListData">     
+        <ion-card *ngIf="checkMobile == true;else elsemobile">
+          <ion-grid fixed>            
+            <ion-row>
+              <ion-col size="4" (click)="goToLink(post.permalink); addHistory(post.id_rss)">
+                <img height="400" width="600" referrerpolicy="no-referrer" attr="referrerpolicy:no-referrer"
+                  [src]="showImage(post.thumb)" class="img-thumb" />
+              </ion-col>
+              <ion-col size="8">
+                <ion-row style="position:initial;top: 0;padding-bottom: 10%;">
+
+                  <ion-badge *ngIf="idOld < post.id_rss"
+                    style="position:absolute;margin:5;left: 0;background-color: #2144C0;">
+                    Update Baru
+                  </ion-badge>
+
+                  <ng-template #addFav>
+                    <ion-button size="small" color="danger" style="position:absolute;right: 0;padding:50;margin-top: 0;"
+                      (click)="addFavorite(post.id_rss)">
+                      <ion-icon slot="start" name="heart-outline"></ion-icon>
+                      <span>Favorites</span>
+                    </ion-button>
+                  </ng-template>
+
+                  <ion-button *ngIf="myFav.includes(post.id_rss);else addFav" size="small" color="danger"
+                    style="position:absolute;right: 0;padding:50;margin-top: 0;" (click)="removeFavorite(post.id_rss)">
+                    <ion-icon slot="start" name="heart-dislike-outline"></ion-icon>
+                    <span>Favorites</span>
+                  </ion-button>
+
+                </ion-row>
+                <ion-card-content (click)="goToLink(post.permalink); addHistory(post.id_rss)">
+                  <ion-card-title style="text-align: center;padding-bottom: 5%;">{{post.ft}}</ion-card-title>
+                  <ion-card-subtitle>{{post.title}}</ion-card-subtitle>
+                  <ion-text>
+                    <div class="ion-text-center" style="padding-top:3%;">
+                      {{post.timestamp * 1000 | date: 'dd MMMM yyyy'}}</div>
+                  </ion-text>
+                </ion-card-content>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+
+        <ng-template #elsemobile>
+          <ion-card >
+            <ion-grid fixed>              
+              <ion-row>
+                <ion-col size="4" (click)="openDetailModal(post); addHistory(post.id_rss)">
+                  <img height="400" width="600" referrerpolicy="no-referrer" attr="referrerpolicy:no-referrer"
+                    [src]="showImage(post.thumb)" class="img-thumb" />
+                </ion-col>
+                <ion-col size="8">
+                  <ion-row style="position:initial;top: 0;padding-bottom: 10%;">
+
+                    <ion-badge *ngIf="idOld < post.id_rss"
+                      style="position:absolute;margin:5;left: 0;background-color: #2144C0;">
+                      Update Baru
+                    </ion-badge>
+  
+                    <ng-template #addFav>
+                      <ion-button size="small" color="danger" style="position:absolute;right: 0;padding:50;margin-top: 0;"
+                        (click)="addFavorite(post.id_rss)">
+                        <ion-icon slot="start" name="heart-outline"></ion-icon>
+                        <span>Favorites</span>
+                      </ion-button>
+                    </ng-template>
+  
+                    <ion-button *ngIf="myFav.includes(post.id_rss);else addFav" size="small" color="danger"
+                      style="position:absolute;right: 0;padding:50;margin-top: 0;" (click)="removeFavorite(post.id_rss)">
+                      <ion-icon slot="start" name="heart-dislike-outline"></ion-icon>
+                      <span>Favorites</span>
+                    </ion-button>
+  
+                  </ion-row>
+                  <ion-card-content (click)="openDetailModal(post); addHistory(post.id_rss)">
+                    <ion-card-title style="text-align: center;padding-bottom: 5%;">{{post.ft}}</ion-card-title>
+                    <ion-card-subtitle>{{post.title}}</ion-card-subtitle>
+                    <ion-text>
+                      <div class="ion-text-center" style="padding-top:3%;">
+                        {{post.timestamp * 1000 | date: 'dd MMMM yyyy'}}</div>
+                    </ion-text>
+                  </ion-card-content>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ng-template>
+
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

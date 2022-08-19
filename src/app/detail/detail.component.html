@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{post.title}}
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="start" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div [innerHTML]="isi"></div> -->
+  <iframe [src]="iframeURL" target="_parent" class="webPage" frameborder="0"></iframe>
+  <ion-button class="btn-tutup" (click)="closeModal()" color="primary">
+    <ion-icon slot="start" name="add"></ion-icon>
+    Tutup
+  </ion-button>
+</ion-content>

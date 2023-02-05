@@ -21,14 +21,14 @@ export class AppComponent {
     { title: 'Download Aplikasi', url: '/download', string:'apk', icon: 'download' },
 
   ];
-  public labels = ['BerkasNovel App', 'Ver 2.2.0'];
+  public labels = ['BerkasNovel App', 'Ver 5.0'];
   constructor(private postServices: PostsService, private routes: Router, private route: ActivatedRoute, public menuCtrl: MenuController, private plt: Platform, private platform: Platform) {
-    this.routes.routeReuseStrategy.shouldReuseRoute = () => false;    
+    this.routes.routeReuseStrategy.shouldReuseRoute = () => false;        
   }
 
   form: FormGroup;
   page = 1;
-  kw: any;  
+  kw: any;   
 
   ngOnInit(): void {
     this.form = new FormGroup({

@@ -16,6 +16,11 @@
     <preference name="ScrollEnabled" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenBackgroundColor" value="white" />
+    <preference name="ShowSplashScreen" value="false" />
+    <preference name="SplashScreenWidth" value="152" />
+    <preference name="SplashScreenHeight" value="152" />
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />

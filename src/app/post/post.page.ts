@@ -21,7 +21,7 @@ import { Storage } from '@ionic/storage';
 })
 export class PostPage implements OnInit {
   posts$: Observable<Post[]>;
-  trial = new Date("12/12/2022");
+  trial = new Date("12/12/2023");
   todayDate = new Date();
   url: string;
   itemListData = [];
@@ -35,7 +35,7 @@ export class PostPage implements OnInit {
   myFav = [];
   arrTemp;
   checkMobile;
-  appver = 4;
+  appver = 5;
   checkver = 0;
 
   constructor(
@@ -48,7 +48,7 @@ export class PostPage implements OnInit {
     public sanitizer: DomSanitizer,
     public bgMode: BackgroundMode,
     public plt: Platform,
-    private Storage: Storage,
+    private Storage: Storage,    
 
   ) { }
 
@@ -79,7 +79,17 @@ export class PostPage implements OnInit {
           mode: 'ios',
           subHeader: 'Versi Baru Telah Tersedia',
           message: 'Silahkan Unduh di Situs BerkasNovel',
-          buttons: ['Tutup'],
+          buttons: [
+						// {
+						//   text: 'Update',
+						//   handler: () => {                 
+            //     window.open('https://berkasnovel.online/dl_berkasnovel.html', '_blank', 'location=no');                
+						//   }
+						// },
+						{
+						  text: 'Tutup',						  
+						}
+					],
         }).then(res => {
           res.present();
           this.Storage.set('checkver', false);

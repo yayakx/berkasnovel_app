@@ -53,6 +53,10 @@ export class PostsService {
         return this.http.get<Post[]>(this.apiUrl + 'ver');
     }
 
+    getDibaca(): Observable<Post[]> {
+        return this.http.get<Post[]>(this.apiUrl + 'dibaca');
+    }
+
     addHistory(post) {
         // this.myHistory = JSON.parse(this.storage.getItem('listHistory'));  
         this.storage.getItem('listHistory').then((val) => {

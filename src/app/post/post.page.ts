@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 import { Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -37,6 +38,7 @@ export class PostPage implements OnInit {
   checkMobile;
   appver = 5;
   checkver = 0;
+  apiUrl = 'https://berkasnovel.online/api/';
 
   constructor(
     private postServices: PostsService,
@@ -48,7 +50,8 @@ export class PostPage implements OnInit {
     public sanitizer: DomSanitizer,
     public bgMode: BackgroundMode,
     public plt: Platform,
-    private Storage: Storage,    
+    private Storage: Storage,  
+    private http: HttpClient,  
 
   ) { }
 
@@ -57,8 +60,16 @@ export class PostPage implements OnInit {
     this.postServices.addHistory(post);
   }
 
-  goToLink(url: string) {
-    window.open(url, "_blank");
+  goToLink(post) {
+    console.log(post);    
+    this.http.get(this.apiUrl + 'dibaca/' + post.id_rss).subscribe((res: any) => {
+      console.log(res);
+      window.open(post.permalink, "_blank");
+      },
+    error=>{
+      console.log(error);
+    } );
+    
   }
 
   showImage(src) {
@@ -189,6 +200,7 @@ export class PostPage implements OnInit {
       componentProps: { post },
 
     });
+    this.postServices.setDibaca(post.id_rss);
     modal.present();
   }
 

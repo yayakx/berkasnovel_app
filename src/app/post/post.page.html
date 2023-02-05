@@ -18,7 +18,7 @@
         <ion-card *ngIf="checkMobile == true;else elsemobile">
           <ion-grid fixed>            
             <ion-row>
-              <ion-col size="4" (click)="goToLink(post.permalink); addHistory(post.id_rss)">
+              <ion-col size="4" (click)="goToLink(post); addHistory(post.id_rss)">
                 <img height="400" width="600" referrerpolicy="no-referrer" attr="referrerpolicy:no-referrer"
                   [src]="showImage(post.thumb)" class="img-thumb" />
               </ion-col>
@@ -45,17 +45,18 @@
                   </ion-button>
 
                 </ion-row>
-                <ion-card-content (click)="goToLink(post.permalink); addHistory(post.id_rss)">
+                <ion-card-content (click)="goToLink(post); addHistory(post.id_rss)">
                   <ion-card-title style="text-align: center;padding-bottom: 5%;">{{post.ft}}</ion-card-title>
                   <ion-card-subtitle>{{post.title}}</ion-card-subtitle>
                   <ion-text>
                     <div class="ion-text-center" style="padding-top:3%;">
                       {{post.timestamp * 1000 | date: 'dd MMMM yyyy'}}</div>
-                  </ion-text>
-                </ion-card-content>
-              </ion-col>
+                  </ion-text>  
+                  <div><ion-icon slot="start" name="eye-outline"></ion-icon> {{post.dibaca ?? 0}}</div>                
+                </ion-card-content>                                
+              </ion-col>              
             </ion-row>
-          </ion-grid>
+          </ion-grid>         
         </ion-card>
 
         <ng-template #elsemobile>
@@ -95,8 +96,9 @@
                     <ion-text>
                       <div class="ion-text-center" style="padding-top:3%;">
                         {{post.timestamp * 1000 | date: 'dd MMMM yyyy'}}</div>
-                    </ion-text>
+                    </ion-text>                    
                   </ion-card-content>
+                  <div><ion-icon slot="start" name="eye-outline"></ion-icon>{{post.dibaca}}</div>
                 </ion-col>
               </ion-row>
             </ion-grid>

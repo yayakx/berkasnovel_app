@@ -53,8 +53,9 @@ export class PostsService {
         return this.http.get<Post[]>(this.apiUrl + 'ver');
     }
 
-    getDibaca(): Observable<Post[]> {
-        return this.http.get<Post[]>(this.apiUrl + 'dibaca');
+    setDibaca(kw) {
+        console.log(this.apiUrl + 'dibaca/' + kw);
+        this.http.get(this.apiUrl + 'dibaca/' + kw);
     }
 
     addHistory(post) {
